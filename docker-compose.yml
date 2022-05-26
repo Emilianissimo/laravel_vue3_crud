@@ -35,8 +35,8 @@ services:
     env_file:
       - .env
     environment:
-      MYSQL_DATABASE: 
-      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: laravel_vue_test
+      MYSQL_ROOT_PASSWORD: Local_root_123
     networks:
       - internal
     volumes:

@@ -26,12 +26,12 @@ Also you'll have to install Docker
     sudo apt-get install docker.io # for ubuntu
 ```
 
-Create .env from .env.example and write credentials on your choice to connect MySQL DB, also repeat them into:
+Create .env from .env.example and write credentials on your choice to connect MySQL DB, also repeat them into docker-compose.yml:
 
-- MYSQL_DATABASE= 
-- MYSQL_ROOT_PASSWORD=
+- MYSQL_DATABASE:
+- MYSQL_ROOT_PASSWORD:
 
-to give MySQL creds (if it won't work, just write them into docker-compose.yml).
+to give MySQL creds.
 
 You'll no need to install any other packages like php/mysql/nginx in case of Docker including in project.
 
