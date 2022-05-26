@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    container_name: laravel_vue_nginx
+    ports:
+      - "8080:80"
+    networks:
+      - internal
+    volumes:
+      - ./:/var/www/html/
+      - /logs/nginx:/var/log/nginx/
+  php:
+    build:
+      context: .
+      dockerfile: docker/php-fpm/Dockerfile
+    container_name: laravel_vue_php
+    networks:
+      - internal
+    volumes:
+      - ./:/var/www/html/
+  db:
+    build:
+      context: .
+      dockerfile: docker/mysql/Dockerfile
+    container_name: laravel_vue_mysql
+    cap_add:
+      - SYS_NICE
+    restart: always
+    ports:
+      - "3307:3306"
+    env_file:
+      - .env
+    environment:
+      MYSQL_DATABASE: 
+      MYSQL_ROOT_PASSWORD: 
+    networks:
+      - internal
+    volumes:
+      - ./db/:/var/lib/mysql8.0
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  internal:
+    driver: bridge
