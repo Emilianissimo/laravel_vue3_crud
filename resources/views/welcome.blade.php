@@ -3,5 +3,5 @@
 @section('title', 'News')
 
 @section('content')
-    <news></news>
+    <app></app>
 @endsection
