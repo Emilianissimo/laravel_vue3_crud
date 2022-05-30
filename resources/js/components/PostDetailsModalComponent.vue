@@ -36,6 +36,11 @@
                 type: Object
             }
         },
+        mounted(){
+            this.$refs.vue_post_detail_modal.addEventListener('hidden.bs.modal', event => {
+                this.$emit('clear_modal')
+            })
+        },
         methods: {
 
         }
