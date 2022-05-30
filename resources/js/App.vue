@@ -120,6 +120,7 @@
         <PostDetailsModal
         bind:key="post_details_modal"
         v-bind:post="post"
+        @clear_modal="clearModalData()"
         ></PostDetailsModal>
     </div>
 </template>
@@ -209,13 +210,16 @@
         },
         mounted(){
             this.$refs.vuemodal.addEventListener('hidden.bs.modal', event => {
+                this.clearModalData()
+            })
+        },
+        methods: {
+            clearModalData(){
                 this.post = {}
                 this.$refs.fileupload.value=null;
                 this.modal.image.url = NO_IMAGE
                 this.error.seen = false
-            })
-        },
-        methods: {
+            },
             fetchAllPosts(){
                 this.chosen_category_id = null
                 this.category_is_choosen = false
